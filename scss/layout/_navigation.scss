@@ -1,0 +1,26 @@
+.menu{
+    
+    span{
+        margin-top: 10px;
+        margin-right: 10px;
+        padding: 5px;
+        text-decoration: none;
+        color: black;
+        padding:5px;
+        &:hover{
+            background-color: rgb(115, 155, 155);
+            border: 1px solid;
+            border-radius: 8px;
+        }
+        
+    }
+}
+
+.navbar-light .navbar-toggler {
+    border-color: transparent !important;
+}
+
+.form-control{
+    width: 250px;
+}
+
