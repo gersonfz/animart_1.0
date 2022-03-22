@@ -14,15 +14,19 @@ while (apellidoUsuario === ""){
 let edadUsuario = prompt("Ingrese su edad:");
 while (edadUsuario == null || /\D/.test(edadUsuario) || edadUsuario == "") {
     edadUsuario = prompt("Ingrese un valor real: ");
-} if(edadUsuario < 18){
+}
+
+if(edadUsuario < 18){
     alert("El ingreso es solo para mayores de edad");
-}
+}else{
 
-let usuarioPassword = prompt("Ingrese una contrasena");
-let passwordRepeat = prompt("Vuelva a ingresar una contrasena");
+let usuarioPassword = prompt("Ingrese una contraseña");
+let passwordRepeat = prompt("Vuelva a ingresar una contraseña");
 while (usuarioPassword != passwordRepeat){
-    passwordRepeat = prompt("Contrasenas no coinciden.");
+    alert("Contraseñas no coinciden")
+    passwordRepeat = prompt("Vuelva a ingresar una contraseña");
 }
 
-alert("Usuario ingresado correctamente")
-alert("Bienvenido " + nombreUsuario + " " + apellidoUsuario)
+alert("Usuario ingresado correctamente");
+alert("Bienvenido " + nombreUsuario + " " + apellidoUsuario);
+}
