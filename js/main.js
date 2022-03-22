@@ -16,6 +16,13 @@ while (edadUsuario == null || /\D/.test(edadUsuario) || edadUsuario == "") {
     edadUsuario = prompt("Ingrese un valor real: ");
 } if(edadUsuario < 18){
     alert("El ingreso es solo para mayores de edad");
-} else {
-    alert(nombreUsuario + " " + apellidoUsuario + " bienvenido a la pagina" );
 }
+
+let usuarioPassword = prompt("Ingrese una contrasena");
+let passwordRepeat = prompt("Vuelva a ingresar una contrasena");
+while (usuarioPassword != passwordRepeat){
+    passwordRepeat = prompt("Contrasenas no coinciden.");
+}
+
+alert("Usuario ingresado correctamente")
+alert("Bienvenido " + nombreUsuario + " " + apellidoUsuario)
