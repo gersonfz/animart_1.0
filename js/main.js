@@ -13,7 +13,6 @@ function validarUsuario(password) {
     }
 }
 
-
 function validarEdad(edad) {
     while (edad == null || /\D/.test(edad) || edad == "") {
         edad = prompt("Ingrese un valor numerico: ");
@@ -28,10 +27,6 @@ function validarEdad(edad) {
         alert("Bienvenido a la pagina");
     }
 }
-
-
-
-
 
 let nombreUsuario = prompt("Ingrese un nombre: ");
 validarNombre(nombreUsuario);
