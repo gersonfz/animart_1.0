@@ -9,30 +9,25 @@ function validarNombre(nombre) {
 function validarUsuario(password) {
     let passwordRepeat;
     while (passwordRepeat != password) {
-        passwordRepeat = prompt("Vuelva a ingresar la contrasenia: ");
+        passwordRepeat = prompt("Vuelva a ingresar la contraseña");
     }
 }
 
 function validarEdad(edad) {
     while (edad == null || /\D/.test(edad) || edad == "") {
-        edad = prompt("Ingrese un valor numerico: ");
+        edad = prompt("Ingrese un valor numerico:");
     }
     if (edad < 18) {
         alert("El ingreso es solo para mayores de edad");
     } else {
-
-        let usuarioPassword = prompt("Ingrese una contraseña");
-        validarUsuario(usuarioPassword);
-
+        let usuarioPassword = promt("Ingrese una contraseña");
         alert("Bienvenido a la pagina");
     }
 }
 
-let nombreUsuario = prompt("Ingrese un nombre: ");
+let nombreUsuario = prompt("Ingrese un nombre:");
 validarNombre(nombreUsuario);
-
-let apellidoUsuario = prompt("Ingrese un apellido: ")
+let apellidoUsuario = prompt("Ingrese un nombre: ");
 validarNombre(apellidoUsuario);
-
 let edadUsuario = prompt("Ingrese su edad:");
 validarEdad(edadUsuario);
