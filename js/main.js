@@ -20,14 +20,15 @@ function validarEdad(edad) {
     if (edad < 18) {
         alert("El ingreso es solo para mayores de edad");
     } else {
-        let usuarioPassword = promt("Ingrese una contraseña");
+        let usuarioPassword = prompt("Ingrese una contraseña");
+        validarUsuario(usuarioPassword);
         alert("Bienvenido a la pagina");
     }
 }
 
 let nombreUsuario = prompt("Ingrese un nombre:");
 validarNombre(nombreUsuario);
-let apellidoUsuario = prompt("Ingrese un nombre: ");
+let apellidoUsuario = prompt("Ingrese un apellidos: ");
 validarNombre(apellidoUsuario);
 let edadUsuario = prompt("Ingrese su edad:");
 validarEdad(edadUsuario);
