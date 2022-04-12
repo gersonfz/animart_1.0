@@ -24,7 +24,6 @@ class DatosUsuario {
     }
 }
 
-const busquedaUsuario = [];
 //Array de los productos a incluir en la tienda, con los precios incluidos. 
 class ProductosManga {
     constructor(manga, tomo, genero, precio) {
