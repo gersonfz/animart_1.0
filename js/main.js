@@ -1,199 +1,141 @@
-//Array de datos de un usuario, con una funcion donde no puede salir a menos que ingrese datos correctos.
-let precioTotal = 0;
-const ValidarUsuario = [];
-class DatosUsuario {
-    constructor(nombre, apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.validarNombre = function () {
-            if (this.nombre === '' || this.apellido === null) {
-                alert('Creo que se olvido ingresar el nombre:')
-                while (this.nombre === '') {
-                    this.nombre = prompt('Ingrese un nombre: ');
-                }
-            }
-        }
-        this.validarApellido = function () {
-            if (this.apellido === '' || this.apellido === null) {
-                alert('Creo que se olvido ingresar el apellido:')
-                while (this.apellido === '') {
-                    this.apellido = prompt('Ingrese un apellido: ');
-                }
-            }
-        }
-    }
-}
-
 //Array de los productos a incluir en la tienda, con los precios incluidos. 
-class ProductosManga {
-    constructor(manga, tomo, genero, precio) {
-        this.manga = manga;
-        this.tomo = tomo;
-        this.genero = genero;
-        this.precio = precio;
+const ProductosTienda = [
+    { id: 1, nombre: 'One Piece', tomo: 'Tomo 1', genero: 'shonen', precio: 500, img: '/multimedia/image/one-piece-tomo1.jpg'},
+    { id: 2, nombre: 'One Piece', tomo: 'Tomo 2', genero: 'shonen', precio: 450, img:'/multimedia/image/one-piece-tomo2.jpg'},
+    { id: 3, nombre: 'Bleach', tomo: 'Tomo 1', genero: 'shonen', precio: 600, img:'/multimedia/image/bleach-tomo1.jpg'},
+    { id: 4, nombre: 'Bleach', tomo: 'Tomo 2', genero: 'shonen', precio: 500, img:'/multimedia/image/bleach-tomo2.jpg'},
+    { id: 5, nombre: 'Naruto', tomo: 'Tomo 1', genero: 'shonen', precio: 400, img:'/multimedia/image/naruto-tomo1.jpg'},
+    { id: 6, nombre: 'Naruto', tomo: 'Tomo 2', genero: 'shonen', precio: 450, img:'/multimedia/image/naruto-tomo2.jpg'},
+    { id: 7, nombre: 'Death Note', tomo: 'Tomo 1', genero: 'seinen', precio: 650, img:'/multimedia/image/death-note-tomo1.jpg'},
+    { id: 8, nombre: 'Death Note', tomo: 'Tomo 2', genero: 'seinen', precio: 600, img:'/multimedia/image/death-note-tomo2.jpg'},
+];
+
+let carritoDeCompras = [];
+
+const stock = document.getElementById('stock');
+const contenedorCarrito = document.getElementById('carritoModal');
+
+const contadorCarrito = document.getElementById('contadorCarrito');
+const precioTotal = document.getElementById('precioTotal');
+
+const filtro = document.getElementById('filtro');
+
+
+
+
+Productos = (array) =>{
+
+    stock.innerHTML = '';
+    array.forEach(element => {
+        let article = document.createElement('article');
+        article.classList.add('mangas');
+        article.innerHTML += `
+        <div class="card m-2" style="width: 18rem;">
+        <img src=${element.img} class="card-img-top" alt="...">
+        <div class="card-body">
+          <button class="agregarCarrito d-flex ms-auto" id=agregar${element.id}>
+            <img src="/multimedia/image/ingresocarrito.svg" alt="Carrito de compras">
+          </button>
+          <h5 class="card-title">${element.nombre}</h5>
+          <p class="card-text">${element.tomo}</p>
+          <p>Precio: $${element.precio}</p>
+        </div>
+      </div>
+        `;
+        stock.appendChild(article);
+
+        let btnCards = document.getElementById(`agregar${element.id}`);
+
+        btnCards.addEventListener('click',()=>{
+           Carrito(element.id)
+        });
+
+   });
     }
-}
-//Ingreso de los objetos de la tienda
-const OnePiece1 = new ProductosManga('ONE PIECE', 'TOMO 1', 'SHONEN', 500);
-const OnePiece2 = new ProductosManga('ONE PIECE', 'TOMO 2', 'SHONEN', 450);
-const Bleach1 = new ProductosManga('BLEACH', 'TOMO 1', 'SHONEN', 600);
-const Bleach2 = new ProductosManga('BLEACH', 'TOMO 2', 'SHONEN', 500);
-const Naruto1 = new ProductosManga('NARUTO', 'TOMO 1', 'SHONEN', 400);
-const Naruto2 = new ProductosManga('NARUTO', 'TOMO 2', 'SHONEN', 450);
-const DeathNote1 = new ProductosManga('DEATH NOTE', 'TOMO 1', 'SEINEN', 650);
-const DeathNote2 = new ProductosManga('DEATH NOTE', 'TOMO 2', 'SEINEN', 600);
-
-const ProductosTienda = [OnePiece1, OnePiece2, Bleach1, Bleach2, Naruto1, Naruto2, DeathNote1, DeathNote2];
 
 
+      Carrito = (id) =>{
 
-let aviso = document.querySelector(".aviso");
-
-
-const IngresoDatos = () => {
-
-    //Ingreso de los datos de nombre y apellido de usuario
-    let nombreUsuario = prompt('Ingresar un nombre:');
-    let apellidoUsuario = prompt('Ingresar un apellido:');
-
-    const NuevoUsuario = new DatosUsuario(nombreUsuario, apellidoUsuario);
-
-    ValidarUsuario.push(NuevoUsuario);
-    NuevoUsuario.validarNombre();
-    NuevoUsuario.validarApellido();
-    
-    for (let nomb of ValidarUsuario) {
-        aviso.innerHTML = `<h1>Bienvenido ${nomb.nombre} ${nomb.apellido}</h1>`;
-    }
-};
-
-
-carritoCompra = () => {
-
-        alert('Los mangas que tenemos son:\nOne Piece\nBleach\nNaruto\nDeath Note')
-        let nombreManga = prompt('Escoger el nombre del manga');
-        let filtro = ProductosTienda.filter(
-            item => item.manga.includes(nombreManga.toUpperCase())
-        );
+        let agregarUnidad = carritoDeCompras.find (element => element.id == id)
         
-        if(nombreManga.toUpperCase() === 'ONE PIECE' || nombreManga.toUpperCase() === 'BLEACH' || nombreManga.toUpperCase() === 'NARUTO' || nombreManga.toUpperCase() === 'DEATH NOTE'){
-            let tomo = '';  
-            for (let element of filtro) {
-                tomo += `${element.tomo} $${element.precio}\n`;  
-            };
-            
-            alert(`Tenemos disponible:\n${tomo}`);
-            let escogerTomo = prompt('Escoja entre Tomo 1 o Tomo 2');
-            if(escogerTomo.toUpperCase() === 'TOMO 1' || escogerTomo.toUpperCase() === 'TOMO 2'){
-                
-                for (let element of filtro) {
-                    if(escogerTomo.toUpperCase() === element.tomo){
-                        alert(`Escogio ${element.manga} ${element.tomo}`)
-                        precioTotal += precioTotal + element.precio;
-                        alert('Precio total: ' + precioTotal);
-                    }
-                }
-            } else {
-                alert('No se encuentra este parametro')
-                
-            }
-            
+        
+        if(agregarUnidad){
+          agregarUnidad.cantidad = agregarUnidad.cantidad + 1;
+          document.getElementById(`unidad${agregarUnidad.id}`).innerHTML =` <p id=unidad${agregarUnidad.id}>Unidad:${agregarUnidad.cantidad}</p>`;
+          actualizarCarrito();
         }else{
-        alert('No se encuentra este parametro');
+          let carritoFinal = ProductosTienda.find(item=> item.id == id);
+        
+            carritoFinal.cantidad = 1;
+            carritoDeCompras.push(carritoFinal);
+            actualizarCarrito();
+            mostrarCarrito(carritoFinal); 
+          };
         }
 
-}
 
-muestraDeProductos = () => {
-    alert('Escoja el manga que mas le interese');
-    let autorizacion = true;
 
-    while (autorizacion === true) {
-    carritoCompra();
-    let confirmar = confirm('Desea continuar?');
-    if (confirmar !== true) {
-        autorizacion = false;
+
+    mostrarCarrito = (carritoFinal) =>{
+
+
+      let div = document.createElement('div')
+      div.className = 'muestraCarrito';
+      div.innerHTML=`
+                <p>${carritoFinal.nombre} </p>
+                <p>${carritoFinal.tomo} </p>
+                <p>Precio: $${carritoFinal.precio} </p>
+                <p id="unidad${carritoFinal.id}">Unidad: ${carritoFinal.cantidad} </p>
+                <button id="delete${carritoFinal.id}" class="boton-eliminar ms-auto d-flex"><img src="/multimedia/image/trash3.svg"></button> 
+                `;
+    contenedorCarrito.appendChild(div);
+
+    let btnDelete = document.getElementById(`delete${carritoFinal.id}`)
+
+    btnDelete.addEventListener('click',()=>{
+        if(carritoFinal.cantidad == 1){
+           btnDelete.parentElement.remove();
+            carritoDeCompras = carritoDeCompras.filter(item=> item.id != carritoFinal.id);
+            actualizarCarrito();
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
+        }else{
+            carritoFinal.cantidad = carritoFinal.cantidad - 1;
+            document.getElementById(`unidad${carritoFinal.id}`).innerHTML =` <p id=unidad${carritoFinal.id}>Unidad:${carritoFinal.cantidad}</p>`;
+            actualizarCarrito();
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+            }
+        
+
+    });
+
+    }
+    
+    actualizarCarrito = () =>{
+      contadorCarrito.innerText = carritoDeCompras.reduce((agg,el)=> agg + el.cantidad, 0);
+      precioTotal.innerText = carritoDeCompras.reduce((agg,el)=> agg + (el.precio * el.cantidad), 0);
+
+    }
+    
+    recuperar = () =>{
+      let recuperarLocalStorage = JSON.parse(localStorage.getItem('carrito'));
+ 
+      if(recuperarLocalStorage){
+          recuperarLocalStorage.forEach(el=> {
+              mostrarCarrito(el)
+              carritoDeCompras.push(el)
+              actualizarCarrito()
+          })
+      }
+     
     }
 
 
-            }
-}
-
-    // let mangaVista = prompt(`Escoja el manga que desee: \n${productos}`);
-    // while (mangaVista !== 'ESC') {
-    //     mangaVista = prompt(`Que producto llevara?\n${productos}`);
-    // }
-    // return mangaVista;
-
-
-
-
-
-// alert('Estos son los mangas que tenemos en este momento');
-// for (let element of ProductosTienda) {
-//     console.log(element.manga + ' ' + element.tomo + ' ' + '$' + element.precio)
-// }
-
-
-
-// let stockObjeto = false;
-// let precioTotal = 0;
-// alert('Para terminar la compra, escriba ESC')
-// let salir = prompt('¿Quiere continuar con la compra?');
-
-
-// //Bucle del carrito de compras
-
-
-
-
-
-
-// while (salir.toUpperCase() !== 'ESC') {
-
-//             let filtradoGenero = prompt('Si quieres filtrar por genero, escriba "Shonen" o "Seinen"');
-
-//             const filtroTomo = ProductosTienda.filter(
-//                 (element) => element.genero === filtradoGenero);
-
-
-
-
-//     for (let element of ProductosTienda) {
-//             stockObjeto = true;
-
-//     }
-//     if (stockObjeto === true) {
-
-//         alert('Escogiste ' + mangaCarrito);
-
-
-//         alert('De este manga tenemos dos tomos');   
-//         tomoCarrito = prompt('¿Que tomo quiere comprar?');
-//         while (tomoCarrito.toUpperCase() != 'ESC') {
-//             for (let element of ProductosTienda) {
-//                 if (tomoCarrito.toUpperCase() == element.tomo && mangaCarrito.toUpperCase() == element.manga) {
-//                     element.precioTomo();
-//                     precioTotal = precioTotal + element.precio;
-//                     console.log('Precio total: ' + precioTotal);
-//                 }
-//             }
-//             alert('Para salir, escriba ESC');
-//             tomoCarrito = prompt('¿Que tomo quiere comprar?');
-//         }
-//     } else {
-//         alert('Este manga no lo tenemos');
-//         alert('Para salir presiona ESC')
-//     }
-//     salir = prompt('¿Que manga quiere comprar?');
-//     if(salir.toUpperCase() !== 'ESC'){
-//         stockObjeto = false;
-//     }
-// }
-
-
-// alert('El precio final de su compra es: ' + precioTotal);
-
-IngresoDatos();
-
-productoElegido = muestraDeProductos();
+Productos(ProductosTienda);
+filtro.addEventListener('change',()=>{
+  if(filtro.value == 'todos'){
+      Productos(ProductosTienda)
+  }else{
+      Productos(ProductosTienda.filter(elemento => elemento.genero == filtro.value))
+  }
+})
+recuperar();
