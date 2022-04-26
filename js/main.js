@@ -5,7 +5,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'shonen',
     precio: 500,
-    img: '../multimedia/image/one-piece-tomo1.jpg'
+    img: './multimedia/image/one-piece-tomo1.jpg'
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'shonen',
     precio: 450,
-    img: '/multimedia/image/one-piece-tomo2.jpg'
+    img: './multimedia/image/one-piece-tomo2.jpg'
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'shonen',
     precio: 600,
-    img: '/multimedia/image/bleach-tomo1.jpg'
+    img: './multimedia/image/bleach-tomo1.jpg'
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'shonen',
     precio: 500,
-    img: '/multimedia/image/bleach-tomo2.jpg'
+    img: './multimedia/image/bleach-tomo2.jpg'
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'shonen',
     precio: 400,
-    img: '/multimedia/image/naruto-tomo1.jpg'
+    img: './multimedia/image/naruto-tomo1.jpg'
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'shonen',
     precio: 450,
-    img: '/multimedia/image/naruto-tomo2.jpg'
+    img: './multimedia/image/naruto-tomo2.jpg'
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'seinen',
     precio: 650,
-    img: '/multimedia/image/death-note-tomo1.jpg'
+    img: './multimedia/image/death-note-tomo1.jpg'
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'seinen',
     precio: 600,
-    img: '/multimedia/image/death-note-tomo2.jpg'
+    img: './multimedia/image/death-note-tomo2.jpg'
   },
 ];
 
