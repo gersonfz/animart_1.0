@@ -5,7 +5,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'shonen',
     precio: 500,
-    img: './multimedia/image/one-piece-tomo1.jpg'
+    img: '../multimedia/image/one-piece-tomo1.jpg'
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'shonen',
     precio: 450,
-    img: './multimedia/image/one-piece-tomo2.jpg'
+    img: '../multimedia/image/one-piece-tomo2.jpg'
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'shonen',
     precio: 600,
-    img: './multimedia/image/bleach-tomo1.jpg'
+    img: '../multimedia/image/bleach-tomo1.jpg'
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'shonen',
     precio: 500,
-    img: './multimedia/image/bleach-tomo2.jpg'
+    img: '../multimedia/image/bleach-tomo2.jpg'
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'shonen',
     precio: 400,
-    img: './multimedia/image/naruto-tomo1.jpg'
+    img: '../multimedia/image/naruto-tomo1.jpg'
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const ProductosTienda = [{
     tomo: 'Tomo 2',
     genero: 'shonen',
     precio: 450,
-    img: './multimedia/image/naruto-tomo2.jpg'
+    img: '../multimedia/image/naruto-tomo2.jpg'
   },
   {
     id: 7,
@@ -53,17 +53,18 @@ const ProductosTienda = [{
     tomo: 'Tomo 1',
     genero: 'seinen',
     precio: 650,
-    img: './multimedia/image/death-note-tomo1.jpg'
+    img: '../multimedia/image/death-note-tomo1.jpg'
   },
   {
     id: 8,
     nombre: 'Death Note',
     tomo: 'Tomo 2',
     genero: 'seinen',
-    precio: 600,
-    img: './multimedia/image/death-note-tomo2.jpg'
+    precio: 600,  
+    img: '../multimedia/image/death-note-tomo2.jpg'
   },
 ];
+
 
 let carritoDeCompras = [];
 
@@ -81,28 +82,29 @@ const filtro = document.getElementById('filtro');
 Productos = (array) => {
 
   stock.innerHTML = '';
-  array.forEach(element => {
+  array.forEach(element => {let {img, nombre, id, precio, tomo} = element
+  
     let article = document.createElement('article');
     article.classList.add('mangas');
     article.innerHTML += `
         <div class="card m-2" style="width: 18rem;">
-        <img src=${element.img} class="card-img-top" alt="...">
+        <img src=${img} class="card-img-top" alt="...">
         <div class="card-body">
-          <button class="agregarCarrito d-flex ms-auto" id=agregar${element.id}>
-            <img src="/multimedia/image/ingresocarrito.svg" alt="Carrito de compras">
+          <button class="agregarCarrito d-flex ms-auto" id=agregar${id}>
+            <img src="../multimedia/image/ingresocarrito.svg" alt="Carrito de compras">
           </button>
-          <h5 class="card-title">${element.nombre}</h5>
-          <p class="card-text">${element.tomo}</p>
-          <p>Precio: $${element.precio}</p>
+          <h5 class="card-title">${nombre}</h5>
+          <p class="card-text">${tomo}</p>
+          <p>Precio: $${precio}</p>
         </div>
       </div>
         `;
     stock.appendChild(article);
 
-    let btnCards = document.getElementById(`agregar${element.id}`);
+    let btnCards = document.getElementById(`agregar${id}`);
 
     btnCards.addEventListener('click', () => {
-      Carrito(element.id)
+      Carrito(id)
     });
 
   });
@@ -112,11 +114,10 @@ Productos = (array) => {
 Carrito = (id) => {
 
   let agregarUnidad = carritoDeCompras.find(element => element.id == id)
-
-
+  
   if (agregarUnidad) {
     agregarUnidad.cantidad = agregarUnidad.cantidad + 1;
-    document.getElementById(`unidad${agregarUnidad.id}`).innerHTML = ` <p id=unidad${agregarUnidad.id}>Unidad:${agregarUnidad.cantidad}</p>`;
+    document.getElementById(`unidad${id}`).innerHTML = `<p id=unidad${id}>Unidad:${agregarUnidad.cantidad}</p>`;
     actualizarCarrito();
   } else {
     let carritoFinal = ProductosTienda.find(item => item.id == id);
@@ -141,13 +142,15 @@ mostrarCarrito = (carritoFinal) => {
                 <p>${carritoFinal.tomo} </p>
                 <p>Precio: $${carritoFinal.precio} </p>
                 <p id="unidad${carritoFinal.id}">Unidad: ${carritoFinal.cantidad} </p>
-                <button id="delete${carritoFinal.id}" class="boton-eliminar ms-auto d-flex"><img src="/multimedia/image/trash3.svg"></button> 
+                <button id="delete${carritoFinal.id}" class="boton-eliminar ms-auto d-flex"><img src="../multimedia/image/trash3.svg"></button> 
                 `;
   contenedorCarrito.appendChild(div);
 
   let btnDelete = document.getElementById(`delete${carritoFinal.id}`)
 
   btnDelete.addEventListener('click', () => {
+
+
     if (carritoFinal.cantidad == 1) {
       btnDelete.parentElement.remove();
       carritoDeCompras = carritoDeCompras.filter(item => item.id != carritoFinal.id);
@@ -174,6 +177,7 @@ actualizarCarrito = () => {
 recuperar = () => {
   let recuperarLocalStorage = JSON.parse(localStorage.getItem('carrito'));
 
+
   if (recuperarLocalStorage) {
     recuperarLocalStorage.forEach(el => {
       mostrarCarrito(el)
@@ -187,10 +191,6 @@ recuperar = () => {
 
 Productos(ProductosTienda);
 filtro.addEventListener('change', () => {
-  if (filtro.value == 'todos') {
-    Productos(ProductosTienda)
-  } else {
-    Productos(ProductosTienda.filter(elemento => elemento.genero == filtro.value))
-  }
+filtro.value == 'todos' ? Productos(ProductosTienda) : Productos(ProductosTienda.filter(elemento => elemento.genero == filtro.value));
 })
 recuperar();
