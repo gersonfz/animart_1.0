@@ -11,9 +11,8 @@
   <title>Animart</title>
 </head>
 
-<body class="color">
+<body class="colorLetra">
 
-  
   <header class="container-fluid col-12 ">
 
 
@@ -25,14 +24,6 @@
 
       <div class="container-fluid">
 
-        <section class="filtro container-fluid">
-          <select id="filtro">
-            <option value="todos">Todos</option>
-            <option value="shonen">Shonen</option>
-            <option value="seinen">Seinen</option>
-        </select>
-        </section>
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -41,18 +32,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link colorLetra" aria-current="page" href="index.html">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="./pages/producto.html" >
+              <a class="nav-link colorLetra" href="./pages/producto.html" >
                 Producto
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./pages/contacto.html">Contacto</a>
+              <a class="nav-link colorLetra" href="./pages/contacto.html">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./pages/preguntas-frecuentes.html">Preguntas frecuentes</a>
+              <a class="nav-link colorLetra" href="./pages/preguntas-frecuentes.html">Preguntas frecuentes</a>
             </li>
           </ul>
 
@@ -64,41 +55,12 @@
       </div>
 
     </nav>
-    <div class="ms-auto">
-      <button type="button" class="btn btnCarrito ms-auto d-flex m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="boton-carrito">
-        <img src="./multimedia/image/carrito.svg" alt="Carrito de compras" id="carrito">
-        <span id="contadorCarrito"> 0 </span>
-      </button>
-    </div>
+
 
 
   </header>
 
   <main>
-    <section class="container-fluid justify-content-center d-flex flex-wrap" id="stock">
-
-    </section>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div id="carritoModal">
-
-            </div>
-            <div class="modal-footer">
-              <p class="precioProducto">Precio total: AR$<span id="precioTotal">0</span></p>
-              <button type="button" class="btn btn-primary">Comprar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
 
   </main>
 
