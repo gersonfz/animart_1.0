@@ -1,4 +1,5 @@
 //Array de los productos a incluir en la tienda, con los precios incluidos. 
+
 const ProductosTienda = [{
     id: 1,
     nombre: 'One Piece',
@@ -87,6 +88,7 @@ Productos = (array) => {
     let article = document.createElement('article');
     article.classList.add('mangas');
     article.innerHTML += `
+        
         <div class="card m-2" style="width: 18rem;">
         <img src=${img} class="card-img-top" alt="...">
         <div class="card-body">
@@ -101,9 +103,20 @@ Productos = (array) => {
         `;
     stock.appendChild(article);
 
+
     let btnCards = document.getElementById(`agregar${id}`);
 
+    
+
     btnCards.addEventListener('click', () => {
+      Toastify({
+  
+        text: "Agregaste un producto al carrito",
+        duration: 1500,
+        style: {
+          background: "linear-gradient(to right, #9A0000, #000000)",
+        },
+        }).showToast()
       Carrito(id)
     });
 
@@ -147,18 +160,29 @@ mostrarCarrito = (carritoFinal) => {
   contenedorCarrito.appendChild(div);
 
   let btnDelete = document.getElementById(`delete${carritoFinal.id}`)
-
   btnDelete.addEventListener('click', () => {
+    Toastify({
 
+      text: "Eliminaste un producto del carrito",
+      duration: 1500,
+      style: {
+        background: "linear-gradient(to right, #9A0000, #000000)",
+      },
+    
+    }).showToast()
 
     if (carritoFinal.cantidad == 1) {
+
       btnDelete.parentElement.remove();
       carritoDeCompras = carritoDeCompras.filter(item => item.id != carritoFinal.id);
+
       actualizarCarrito();
       localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
+
     } else {
       carritoFinal.cantidad = carritoFinal.cantidad - 1;
       document.getElementById(`unidad${carritoFinal.id}`).innerHTML = ` <p id=unidad${carritoFinal.id}>Unidad:${carritoFinal.cantidad}</p>`;
+      
       actualizarCarrito();
       localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
     }
@@ -187,10 +211,32 @@ recuperar = () => {
   }
 
 }
+Filtro = () => {
+  filtro.addEventListener('change', () => {
+  filtro.value == 'todos' ? Productos(ProductosTienda) : Productos(ProductosTienda.filter(elemento => elemento.genero == filtro.value));
+  })
+}
+
+FinalizarCompra = () => {
+
+
+
+
+  document.querySelector('.btnSweet').addEventListener('click', ()=> 
+  Swal.fire({
+    title: 'Estás seguro que finalizaste tu compra?',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Sí',
+    cancelButtonText: 'No'
+  })
+  )
+}
 
 
 Productos(ProductosTienda);
-filtro.addEventListener('change', () => {
-filtro.value == 'todos' ? Productos(ProductosTienda) : Productos(ProductosTienda.filter(elemento => elemento.genero == filtro.value));
-})
+FinalizarCompra();
+Filtro();
+
 recuperar();
+

@@ -77,14 +77,17 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
+        
         }
-        main{
-            padding-top: 25px;
+
+        
+        .principal{
+            background-image: url(../../multimedia/image/manga-vs-comic.jpg);
+            background-position: center;
+            background-size:cover;
+            background-repeat: no-repeat;
+            height: 120vh;
+            margin-top: 25px;
+
         }
         
-        body{
-            background-image: url(../../multimedia/image/background.jpg);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
