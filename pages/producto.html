@@ -73,8 +73,21 @@
             </button>
           </div>
           </section>
+
         <section class="container-fluid justify-content-center d-flex flex-wrap" id="stock">
-    
+            <template id="productCard">
+              <div class="card m-2" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <button class="agregarCarrito d-flex ms-auto" id=>
+                    <img src="../multimedia/image/ingresocarrito.svg" alt="Carrito de compras">
+                  </button>
+                  <h5 class="card-title"></h5>
+                  <p class="card-text"></p>
+                  <p id="precio">Precio: $</p>
+                </div>
+              </div>
+            </template>
         </section>
     
           <!-- Modal -->
@@ -105,7 +118,6 @@
       </footer>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-      <script src="../js/main.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
       </script>
@@ -114,6 +126,7 @@
       </script>
 
 
+      <script src="../js/productos.js"></script>
       
     </body>
 </html>

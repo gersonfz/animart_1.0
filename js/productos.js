@@ -1,90 +1,34 @@
 //Array de los productos a incluir en la tienda, con los precios incluidos. 
 
-const ProductosTienda = [{
-    id: 1,
-    nombre: 'One Piece',
-    tomo: 'Tomo 1',
-    genero: 'shonen',
-    precio: 500,
-    img: '../multimedia/image/one-piece-tomo1.jpg'
-  },
-  {
-    id: 2,
-    nombre: 'One Piece',
-    tomo: 'Tomo 2',
-    genero: 'shonen',
-    precio: 450,
-    img: '../multimedia/image/one-piece-tomo2.jpg'
-  },
-  {
-    id: 3,
-    nombre: 'Bleach',
-    tomo: 'Tomo 1',
-    genero: 'shonen',
-    precio: 600,
-    img: '../multimedia/image/bleach-tomo1.jpg'
-  },
-  {
-    id: 4,
-    nombre: 'Bleach',
-    tomo: 'Tomo 2',
-    genero: 'shonen',
-    precio: 500,
-    img: '../multimedia/image/bleach-tomo2.jpg'
-  },
-  {
-    id: 5,
-    nombre: 'Naruto',
-    tomo: 'Tomo 1',
-    genero: 'shonen',
-    precio: 400,
-    img: '../multimedia/image/naruto-tomo1.jpg'
-  },
-  {
-    id: 6,
-    nombre: 'Naruto',
-    tomo: 'Tomo 2',
-    genero: 'shonen',
-    precio: 450,
-    img: '../multimedia/image/naruto-tomo2.jpg'
-  },
-  {
-    id: 7,
-    nombre: 'Death Note',
-    tomo: 'Tomo 1',
-    genero: 'seinen',
-    precio: 650,
-    img: '../multimedia/image/death-note-tomo1.jpg'
-  },
-  {
-    id: 8,
-    nombre: 'Death Note',
-    tomo: 'Tomo 2',
-    genero: 'seinen',
-    precio: 600,  
-    img: '../multimedia/image/death-note-tomo2.jpg'
-  },
-];
-
-
 let carritoDeCompras = [];
 
 const stock = document.getElementById('stock');
 const contenedorCarrito = document.getElementById('carritoModal');
-
 const contadorCarrito = document.getElementById('contadorCarrito');
 const precioTotal = document.getElementById('precioTotal');
-
 const filtro = document.getElementById('filtro');
 
+fetchData = async () => {
+  try {
+    const resp = await fetch('../json/productos.json')
+    const data = await resp.json()
+    Filtro(data);
+    Productos(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-
-
-Productos = (array) => {
-
+Productos = (data) => {
   stock.innerHTML = '';
-  array.forEach(element => {let {img, nombre, id, precio, tomo} = element
-  
+  data.forEach(element => {
+    let {
+      img,
+      nombre,
+      id,
+      precio,
+      tomo
+    } = element
     let article = document.createElement('article');
     article.classList.add('mangas');
     article.innerHTML += `
@@ -102,52 +46,48 @@ Productos = (array) => {
       </div>
         `;
     stock.appendChild(article);
-
-
     let btnCards = document.getElementById(`agregar${id}`);
-
-    
-
     btnCards.addEventListener('click', () => {
       Toastify({
-  
+
         text: "Agregaste un producto al carrito",
         duration: 1500,
         style: {
           background: "linear-gradient(to right, #9A0000, #000000)",
         },
-        }).showToast()
+      }).showToast()
       Carrito(id)
     });
 
   });
 }
-
-
 Carrito = (id) => {
-
   let agregarUnidad = carritoDeCompras.find(element => element.id == id)
-  
+
   if (agregarUnidad) {
     agregarUnidad.cantidad = agregarUnidad.cantidad + 1;
     document.getElementById(`unidad${id}`).innerHTML = `<p id=unidad${id}>Unidad:${agregarUnidad.cantidad}</p>`;
     actualizarCarrito();
   } else {
-    let carritoFinal = ProductosTienda.find(item => item.id == id);
 
-    carritoFinal.cantidad = 1;
-    carritoDeCompras.push(carritoFinal);
-    actualizarCarrito();
-    mostrarCarrito(carritoFinal);
+    let btnCarrito = async () => {
+      const resp = await fetch('../json/productos.json')
+      const data = await resp.json()
+
+      let carritoFinal = data.find(item => item.id == id);
+
+      carritoFinal.cantidad = 1;
+
+      carritoDeCompras.push(carritoFinal);
+
+      mostrarCarrito(carritoFinal);
+      actualizarCarrito();
+    }
+    btnCarrito();
+
   };
 }
-
-
-
-
 mostrarCarrito = (carritoFinal) => {
-
-
   let div = document.createElement('div')
   div.className = 'muestraCarrito';
   div.innerHTML = `
@@ -168,7 +108,7 @@ mostrarCarrito = (carritoFinal) => {
       style: {
         background: "linear-gradient(to right, #9A0000, #000000)",
       },
-    
+
     }).showToast()
 
     if (carritoFinal.cantidad == 1) {
@@ -182,26 +122,20 @@ mostrarCarrito = (carritoFinal) => {
     } else {
       carritoFinal.cantidad = carritoFinal.cantidad - 1;
       document.getElementById(`unidad${carritoFinal.id}`).innerHTML = ` <p id=unidad${carritoFinal.id}>Unidad:${carritoFinal.cantidad}</p>`;
-      
+
       actualizarCarrito();
       localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
-    }
-
-
-  });
-
-}
+    }}
+    )
+  }
 
 actualizarCarrito = () => {
   contadorCarrito.innerText = carritoDeCompras.reduce((agg, el) => agg + el.cantidad, 0);
   precioTotal.innerText = carritoDeCompras.reduce((agg, el) => agg + (el.precio * el.cantidad), 0);
-
 }
 
 recuperar = () => {
   let recuperarLocalStorage = JSON.parse(localStorage.getItem('carrito'));
-
-
   if (recuperarLocalStorage) {
     recuperarLocalStorage.forEach(el => {
       mostrarCarrito(el)
@@ -209,34 +143,28 @@ recuperar = () => {
       actualizarCarrito()
     })
   }
-
 }
-Filtro = () => {
+
+
+Filtro = (data) => {
   filtro.addEventListener('change', () => {
-  filtro.value == 'todos' ? Productos(ProductosTienda) : Productos(ProductosTienda.filter(elemento => elemento.genero == filtro.value));
+    filtro.value == 'todos' ? Productos(data) : Productos(data.filter(elemento => elemento.genero == filtro.value));
   })
 }
 
 FinalizarCompra = () => {
-
-
-
-
-  document.querySelector('.btnSweet').addEventListener('click', ()=> 
-  Swal.fire({
-    title: 'Estás seguro que finalizaste tu compra?',
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonText: 'Sí',
-    cancelButtonText: 'No'
-  })
+  document.querySelector('.btnSweet').addEventListener('click', () =>
+    Swal.fire({
+      title: 'Estás seguro que finalizaste tu compra?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    })
   )
 }
 
-
-Productos(ProductosTienda);
+fetchData()
 FinalizarCompra();
 Filtro();
-
 recuperar();
-

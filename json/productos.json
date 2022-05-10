@@ -1,0 +1,65 @@
+[{
+      "id": "1",
+      "nombre": "One Piece",
+      "tomo": "Tomo 1",
+      "genero": "shonen",
+      "precio": "500",
+      "img": "../multimedia/image/one-piece-tomo1.jpg"
+   },
+   {
+      "id": "2",
+      "nombre": "One Piece",
+      "tomo": "Tomo 2",
+      "genero": "shonen",
+      "precio": "450",
+      "img": "'../multimedia/image/one-piece-tomo2.jpg'"
+   },
+   {
+      "id": "3",
+      "nombre": "Bleach",
+      "tomo": "Tomo 1",
+      "genero": "shonen",
+      "precio": "600",
+      "img": "../multimedia/image/bleach-tomo1.jpg"
+   },
+   {
+      "id": "4",
+      "nombre": "Bleach",
+      "tomo": "Tomo 2",
+      "genero": "shonen",
+      "precio": "500",
+      "img": "../multimedia/image/bleach-tomo2.jpg"
+   },
+   {
+      "id": "5",
+      "nombre": "Naruto",
+      "tomo": "Tomo 1",
+      "genero": "shonen",
+      "precio": "400",
+      "img": "../multimedia/image/naruto-tomo1.jpg"
+   },
+   {
+      "id": "6",
+      "nombre": "Naruto",
+      "tomo": "Tomo 2",
+      "genero": "shonen",
+      "precio": "450",
+      "img": "../multimedia/image/naruto-tomo2.jpg"
+   },
+   {
+      "id": "7",
+      "nombre": "Death Note",
+      "tomo": "Tomo 1",
+      "genero": "seinen",
+      "precio": "650",
+      "img": "../multimedia/image/death-note-tomo1.jpg"
+   },
+   {
+      "id": "8",
+      "nombre": "Death Note",
+      "tomo": "Tomo 2",
+      "genero": "seinen",
+      "precio": "600",
+      "img": "../multimedia/image/death-note-tomo2.jpg"
+   }
+]
