@@ -67,8 +67,8 @@ Carrito = (id) => {
   if (agregarUnidad) {
     agregarUnidad.cantidad = agregarUnidad.cantidad + 1;
     document.getElementById(`unidad${id}`).innerHTML = `<p id=unidad${id}>Unidad:${agregarUnidad.cantidad}</p>`;
-    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
     actualizarCarrito();
+    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
   } else {
 
     let btnCarrito = async () => {
@@ -83,6 +83,8 @@ Carrito = (id) => {
 
       mostrarCarrito(carritoFinal);
       actualizarCarrito();
+      localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
+
     }
     btnCarrito();
 
