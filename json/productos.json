@@ -2,7 +2,7 @@
       "id": "1",
       "nombre": "One Piece",
       "tomo": "Tomo 1",
-      "genero": "shonen",
+      "genero": "manga",
       "precio": "500",
       "img": "../multimedia/image/one-piece-tomo1.jpg"
    },
@@ -10,7 +10,7 @@
       "id": "2",
       "nombre": "One Piece",
       "tomo": "Tomo 2",
-      "genero": "shonen",
+      "genero": "manga",
       "precio": "450",
       "img": "'../multimedia/image/one-piece-tomo2.jpg'"
    },
@@ -18,7 +18,7 @@
       "id": "3",
       "nombre": "Bleach",
       "tomo": "Tomo 1",
-      "genero": "shonen",
+      "genero": "manga",
       "precio": "600",
       "img": "../multimedia/image/bleach-tomo1.jpg"
    },
@@ -26,7 +26,7 @@
       "id": "4",
       "nombre": "Bleach",
       "tomo": "Tomo 2",
-      "genero": "shonen",
+      "genero": "manga",
       "precio": "500",
       "img": "../multimedia/image/bleach-tomo2.jpg"
    },
@@ -34,7 +34,7 @@
       "id": "5",
       "nombre": "Naruto",
       "tomo": "Tomo 1",
-      "genero": "shonen",
+      "genero": "manga",
       "precio": "400",
       "img": "../multimedia/image/naruto-tomo1.jpg"
    },
@@ -42,7 +42,7 @@
       "id": "6",
       "nombre": "Naruto",
       "tomo": "Tomo 2",
-      "genero": "shonen",
+      "genero": "manga",
       "precio": "450",
       "img": "../multimedia/image/naruto-tomo2.jpg"
    },
@@ -50,7 +50,7 @@
       "id": "7",
       "nombre": "Death Note",
       "tomo": "Tomo 1",
-      "genero": "seinen",
+      "genero": "manga",
       "precio": "650",
       "img": "../multimedia/image/death-note-tomo1.jpg"
    },
@@ -58,8 +58,74 @@
       "id": "8",
       "nombre": "Death Note",
       "tomo": "Tomo 2",
-      "genero": "seinen",
+      "genero": "manga",
       "precio": "600",
       "img": "../multimedia/image/death-note-tomo2.jpg"
+   },
+   {
+      "id": "9",
+      "nombre": "Spiderman",
+      "tomo": "Numero 1",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/spiderman-marvel.jpg"
+   },
+   {
+      "id": "10",
+      "nombre": "Spiderman",
+      "tomo": "Numero 2",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/comics_marvel_spider_man_vol1_portada02.jpg"
+   },
+   {
+      "id": "11",
+      "nombre": "Iron Man",
+      "tomo": "Numero 1",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/ironman-tomo1.jpg"
+   },
+   {
+      "id": "12",
+      "nombre": "Iron Man",
+      "tomo": "Numero 2",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/Iron-Man-Extremis-portada.jpg"
+   },
+   {
+      "id": "13",
+      "nombre": "Batman",
+      "tomo": "Numero 1",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/batman-n1.jpg"
+   },
+   {
+      "id": "14",
+      "nombre": "Batman",
+      "tomo": "Numero 2",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/batman-n44.jpg"
+   },
+   {
+      "id": "15",
+      "nombre": "Superman",
+      "tomo": "Numero 1",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/superman-n1.jpg"
+   },
+   {
+      "id": "16",
+      "nombre": "Superman",
+      "tomo": "Numero 2",
+      "genero": "comic",
+      "precio": "600",
+      "img": "../multimedia/image/superman-n1033.jpg"
    }
+
+
 ]

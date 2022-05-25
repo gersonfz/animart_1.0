@@ -22,7 +22,7 @@ fetchData = async () => {
 Productos = (data) => {
   stock.innerHTML = '';
   data.forEach(element => {
-    let {
+    let { 
       img,
       nombre,
       id,
@@ -67,6 +67,7 @@ Carrito = (id) => {
   if (agregarUnidad) {
     agregarUnidad.cantidad = agregarUnidad.cantidad + 1;
     document.getElementById(`unidad${id}`).innerHTML = `<p id=unidad${id}>Unidad:${agregarUnidad.cantidad}</p>`;
+    localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
     actualizarCarrito();
   } else {
 
@@ -87,6 +88,7 @@ Carrito = (id) => {
 
   };
 }
+
 mostrarCarrito = (carritoFinal) => {
   let div = document.createElement('div')
   div.className = 'muestraCarrito';
@@ -121,7 +123,7 @@ mostrarCarrito = (carritoFinal) => {
 
     } else {
       carritoFinal.cantidad = carritoFinal.cantidad - 1;
-      document.getElementById(`unidad${carritoFinal.id}`).innerHTML = ` <p id=unidad${carritoFinal.id}>Unidad:${carritoFinal.cantidad}</p>`;
+      document.getElementById(`unidad${carritoFinal.id}`).innerHTML = `<p id=unidad${carritoFinal.id}>Unidad:${carritoFinal.cantidad}</p>`;
 
       actualizarCarrito();
       localStorage.setItem('carrito', JSON.stringify(carritoDeCompras))
@@ -137,9 +139,9 @@ actualizarCarrito = () => {
 recuperar = () => {
   let recuperarLocalStorage = JSON.parse(localStorage.getItem('carrito'));
   if (recuperarLocalStorage) {
-    recuperarLocalStorage.forEach(el => {
-      mostrarCarrito(el)
-      carritoDeCompras.push(el)
+    recuperarLocalStorage.forEach(element => {
+      mostrarCarrito(element)
+      carritoDeCompras.push(element)
       actualizarCarrito()
     })
   }
@@ -160,6 +162,10 @@ FinalizarCompra = () => {
       showCancelButton: true,
       confirmButtonText: 'Sí',
       cancelButtonText: 'No'
+    }).then((result) => {
+     if (result.isConfirmed){
+        window.location.href = '../pages/carrito.html'
+      }
     })
   )
 }

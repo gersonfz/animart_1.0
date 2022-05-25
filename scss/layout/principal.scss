@@ -34,6 +34,8 @@
     .btn-primary{
         background-color: rgb(162, 162, 238) !important;
         border-color: black !important;
+        padding:0 50px 0;
+        margin-left: 15px;
     }
 
     .agregarCarrito{
@@ -70,24 +72,19 @@
             padding: 10px;
         }
             
+    }
+    .mediosPago{
+        img{
+            width: 50px;
+            height: 50px;
+            margin: 15px;
         }
-            
-        header{
-            background-image: url(../multimedia/image/background2.jpg);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        
+        #rapipago{
+            height: 30px;
         }
+    }
+    
 
-        
-        .principal{
-            background-image: url(../multimedia/image/manga-vs-comic.jpg);
-            background-position: center;
-            background-size:cover;
-            background-repeat: no-repeat;
-            height: 120vh;
-            margin-top: 25px;
-
-        }
-        
+    footer{
+        background-color: rgb(132, 129, 129);
+    }
